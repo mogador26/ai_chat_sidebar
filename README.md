@@ -2,6 +2,9 @@
 
 Chat avec des LLM dans la barre latérale de Firefox, avec **outils MCP**, **RAG** et **configuration libre des API** (URL + token).
 
+> L'objectif est de tester rapidement l'usage des serveurs MCP et collections de documents (RAG) afin de valider des cas d'usage depuis l'environnement d'un utilisateur (ici depuis un navigateur firefox).
+
+
 - **Chat** en streaming (Markdown, blocs de code copiables, raisonnement repliable), historique des conversations, arrêt / régénération.
 - **Fournisseurs IA** : tout service *compatible OpenAI* (OpenAI, Mistral, Groq, OpenRouter, Gemini, Ollama, LM Studio, vLLM, LiteLLM…) et l'API **Anthropic**. Vous saisissez l'URL de base et le token ; plusieurs fournisseurs coexistent.
 - **Recherche web** : le modèle peut chercher sur Internet (`web_search`) et lire des pages (`web_fetch`), puis citer ses sources. Moteurs : DuckDuckGo (sans clé), SearXNG (votre instance), Brave Search (clé API). Bouton 🌐 dans la barre latérale pour l'activer/désactiver.
@@ -119,3 +122,5 @@ Les tests utilisent de faux serveurs HTTP locaux (OpenAI, Anthropic, MCP Streama
 - MCP : outils uniquement (pas de ressources, prompts ni sampling).
 - Les recherches RAG chargent la collection en mémoire : prévu pour quelques milliers d'extraits, pas pour des corpus massifs.
 - Firefox pour Android : le chat s'ouvre dans un onglet (non testé).
+
+**Réalisé avec claude IA**.
