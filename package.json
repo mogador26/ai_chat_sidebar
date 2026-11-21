@@ -1,0 +1,19 @@
+{
+  "name": "firefox-ai-chat",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Extension Firefox : chat LLM, outils MCP, RAG local.",
+  "scripts": {
+    "test": "node --test \"tests/*.test.js\"",
+    "lint": "web-ext lint --source-dir . --ignore-files \"tests/**\" \"specs/**\" \".specify/**\" \"node_modules/**\" \"package*.json\" \"README.md\" \"dist/**\" \"web-ext-artifacts/**\" \"Dockerfile\" \".dockerignore\"",
+    "build": "web-ext build --source-dir . --artifacts-dir dist --overwrite-dest --ignore-files \"tests/**\" \"specs/**\" \".specify/**\" \"node_modules/**\" \"package*.json\" \"dist/**\" \"web-ext-artifacts/**\" \"Dockerfile\" \".dockerignore\"",
+    "start": "web-ext run --source-dir . --ignore-files \"tests/**\" \"specs/**\" \".specify/**\" \"node_modules/**\" \"dist/**\"",
+    "sign": "web-ext sign --source-dir . --artifacts-dir web-ext-artifacts --channel unlisted --ignore-files \"tests/**\" \"specs/**\" \".specify/**\" \"node_modules/**\" \"package*.json\" \"dist/**\" \"web-ext-artifacts/**\" \"Dockerfile\" \".dockerignore\""
+  },
+  "devDependencies": {
+    "fake-indexeddb": "^6.2.6",
+    "jsdom": "^30.1.3",
+    "web-ext": "^10.8.0"
+  }
+}
