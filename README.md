@@ -43,6 +43,8 @@ Le bouton de la barre d'outils (ou `Alt+Maj+Y`) ouvre la barre latérale. À la 
 | OpenRouter | compatible OpenAI | `https://openrouter.ai/api/v1` |
 | Ollama | compatible OpenAI | `http://localhost:11434/v1` |
 | LM Studio | compatible OpenAI | `http://localhost:1234/v1` |
+| Albert API | compatible OpenAI | `https://albert.api.etalab.gouv.fr/v1` |
+| MIRAI API | compatible OpenAI | `https://api.mirai.../v1` |
 
 Les URLs sont celles des préréglages ; vérifiez-les dans la documentation de votre fournisseur si une requête échoue.
 
