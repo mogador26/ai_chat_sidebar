@@ -125,4 +125,43 @@ Les tests utilisent de faux serveurs HTTP locaux (OpenAI, Anthropic, MCP Streama
 - Les recherches RAG chargent la collection en mémoire : prévu pour quelques milliers d'extraits, pas pour des corpus massifs.
 - Firefox pour Android : le chat s'ouvre dans un onglet (non testé).
 
+
+### signature de l'extension firefox
+
+📝 todo
+
+Pour qu’un Firefox standard l’installe, l’extension doit être signée par Mozilla. Pour un usage personnel ou en interne, le plus simple est la signature « non répertoriée » : l’extension est signée sans être publiée sur le catalogue de Mozilla.
+
+1. Préparer le manifeste
+
+Identifiant : remplacez ai-chat-sidebar@example.com dans manifest.json (browser_specific_settings.gecko.id) par un identifiant à vous, par exemple ai-chat-sidebar@votre-domaine.fr. Il est rattaché à votre compte dès la première signature et ne doit plus changer ensuite.
+Version : chaque signature exige un numéro de version jamais utilisé (1.0.0, puis 1.0.1…).
+data_collection_permissions : ce champ demandé par Mozilla est déjà présent.
+
+2. Créer les clés d’API
+Se connecter sur addons.mozilla.org avec un compte Mozilla, puis allez dans Hub des développeurs → Gérer les clés d’API (https://addons.mozilla.org/developers/addon/api/key/). Vous obtenez un « émetteur JWT » (la clé, du type user:12345:67) et un « secret JWT ». Gardez-les secrets.
+
+3. Signer, au choix
+
+En ligne de commande, depuis les sources du projet :
+export WEB_EXT_API_KEY="user:12345:67"
+export WEB_EXT_API_SECRET="votre-secret"
+npm run sign
+
+Le script lance web-ext sign --channel unlisted. Le .xpi signé arrive dans web-ext-artifacts/.
+
+Par la CI GitHub : dans le dépôt, se positionner dans Settings → Secrets and variables → Actions et créez AMO_API_KEY et AMO_API_SECRET. Ensuite, faire évoluer la version, puis git tag v1.0.1 && git push --tags. La Release contiendra ai_chat_sidebar-1.0.1-signed.xpi.
+Par Docker :
+docker build --target signed --secret id=amo_key,env=WEB_EXT_API_KEY --secret id=amo_secret,env=WEB_EXT_API_SECRET --output type=local,dest=signed .
+Sans outil : sur le Hub des développeurs, cliquez sur Soumettre une nouvelle extension, choisissez « Sur votre propre site » (non répertorié), puis téléversez le zip de dist/. Téléchargez ensuite le fichier signé.
+
+4. Installer
+Glissez le .xpi signé dans Firefox, ou passez par about:addons → roue dentée → Installer un module depuis un fichier. L’installation est permanente.
+
+À savoir
+
+Délai : une validation automatique a lieu avant la signature, qui prend en général quelques minutes, jusqu’à 24 h. Mozilla peut aussi faire une revue manuelle plus tard.
+Erreurs fréquentes : une erreur « Forbidden » vient souvent de clés incorrectes, ou d’un identifiant déjà pris par un autre compte. « Version already exists » signifie qu’il faut augmenter la version.
+Publication publique : pour publier sur le catalogue (--channel listed), il faut une fiche (description, captures) et une revue humaine. Ce n’est pas nécessaire pour votre usage.
+
 **Réalisé avec claude IA**.
