@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Chat</title>
+  <link rel="stylesheet" href="../lib/common.css">
+  <link rel="stylesheet" href="sidebar.css">
+</head>
+<body>
+  <header id="top">
+    <div class="selectors">
+      <select id="provider" title="Fournisseur" aria-label="Fournisseur"></select>
+      <select id="model" title="Modèle" aria-label="Modèle"></select>
+      <button class="iconbtn" id="btn-models" type="button" title="Actualiser la liste des modèles depuis l'API" aria-label="Actualiser les modèles" data-icon="refresh"></button>
+    </div>
+    <input id="model-custom" type="text" placeholder="Nom du modèle puis Entrée" aria-label="Nom du modèle" autocomplete="off" spellcheck="false" hidden>
+    <div class="toolbar">
+      <button class="iconbtn" id="btn-new" type="button" title="Nouvelle conversation" data-icon="plus"></button>
+      <button class="iconbtn" id="btn-history" type="button" title="Historique" data-icon="history"></button>
+      <button class="iconbtn" id="btn-web" type="button" title="Recherche web (activer / désactiver)" aria-pressed="false" data-icon="globe"></button>
+      <button class="iconbtn" id="btn-tools" type="button" title="Outils et connaissances (MCP, RAG)" data-icon="tool"></button>
+      <button class="iconbtn" id="btn-tab" type="button" title="Ouvrir dans un onglet" data-icon="external"></button>
+      <button class="iconbtn" id="btn-options" type="button" title="Paramètres (fournisseurs, MCP, RAG)" data-icon="settings"></button>
+    </div>
+  </header>
+
+  <main id="messages" aria-live="polite"></main>
+
+  <aside id="panel" hidden></aside>
+
+  <footer>
+    <div id="status" role="status"></div>
+    <form id="composer">
+      <textarea id="input" rows="1" placeholder="Écrire un message…" aria-label="Message"></textarea>
+      <button id="send" class="btn primary" type="submit" title="Envoyer (Entrée)"></button>
+    </form>
+  </footer>
+
+  <script type="module" src="sidebar.js"></script>
+</body>
+</html>
